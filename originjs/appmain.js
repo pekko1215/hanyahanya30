@@ -112,9 +112,6 @@ function main() {
     var notplaypaysound = false;
 
     slotmodule.on("allreelstop", function (e) {
-        var $ele = $("#nabi");
-
-
         if (e.hits != 0) {
             if (e.hityaku.length == 0)
                 return
@@ -490,8 +487,10 @@ function main() {
     var jacLotter = new Lotter(lotdata.jac);
 
 
-    var black = true;
+    var black = location.href.indexOf('black=true')!=-1;
     if(black){
+        console.log("Mode Black")
+        lotdata.normal[2].value = 1/128
         var stock = {
             big:0,
             reg:0,
@@ -503,7 +502,8 @@ function main() {
                 case "BIG":
                     if(rand(2)==0){
                         zyotai = true;
-                        stock.rt = rand(32)+1;
+                        lot.name = "スイカ"
+                        stock.rt = rand(4)+1;
                     }else{
                         lot.name = null
                         stock.big++;
